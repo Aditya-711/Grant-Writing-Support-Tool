@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grant Writing Support Tool</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #f8f9fa;
+        }
+
+        .navbar {
+            background-color: #1f1f1f;
+        }
+
+        .navbar-brand, .nav-link {
+            color: #f8f9fa !important;
+        }
+
+        .navbar-brand:hover, .nav-link:hover {
+            color: #d4af37 !important;
+        }
+
+        .hero-section {
+            background-color: #1c1c1c;
+            padding: 50px 20px;
+            text-align: center;
+            border-bottom: 1px solid #333;
+        }
+
+        .hero-section h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #f8f9fa;
+        }
+
+        .hero-section p {
+            font-size: 1.2rem;
+            color: #bdbdbd;
+        }
+
+        .hero-section .btn-primary {
+            background-color: #d4af37;
+            border: none;
+        }
+
+        .hero-section .btn-primary:hover {
+            background-color: #c89f31;
+        }
+
+        .card {
+            background-color: #1f1f1f;
+            border: 1px solid #333;
+            color: #f8f9fa;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .card .btn-primary {
+            background-color: #d4af37;
+            border: none;
+        }
+
+        .card .btn-primary:hover {
+            background-color: #c89f31;
+        }
+
+        .btn-primary:hover {
+            color: #fff;
+            transform: scale(1.05);
+            transition: transform 0.2s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">Grant Support</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Aditya Inamdar</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-section">
+        <h1>Welcome to the Grant Writing Support Tool</h1>
+        <p>Your one-stop solution for writing impactful grant proposals and creating detailed organization profiles.</p>
+    </section>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 text-center">
+                    <div class="card-body">
+                        <form action="/draftEditor" method="get">
+                            <h5 class="card-title">Draft Editor</h5>
+                            <p class="card-text">Start drafting your grant proposals here with our Editor.</p>
+                            <button type="submit" class="btn btn-primary">Go to Draft Editor</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+                <div class="col-md-4 mb-4">
+                <div class="card h-100 text-center">
+                    <div class="card-body">
+                        <form method="get" action="/resources">
+                            <h5 class="card-title">Resources</h5>
+                            <p class="card-text">Access guides, tips, and resources for better grant writing.</p>
+                            <button type="submit" class="btn btn-primary">Explore Resources</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">Organization Profile</h5>
+                        <p class="card-text">Build and manage detailed profiles for your organization.</p>
+                        <a href="#orgProfile" class="btn btn-primary">View Profiles</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

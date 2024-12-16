@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Draft Editor</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      .ai-magic-btn {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: white;
+        background: linear-gradient(90deg, #6a11cb, #2575fc);
+        border: none;
+        border-radius: 50px;
+        padding: 10px 20px;
+        box-shadow: 0 4px 15px rgba(101, 107, 255, 0.4);
+        position: relative;
+        overflow: hidden;
+        transition: all 0.4s ease-in-out;
+        cursor: pointer;
+      }
+
+      .ai-magic-btn:hover {
+        background: linear-gradient(90deg, #2575fc, #6a11cb);
+        box-shadow: 0 6px 20px rgba(101, 107, 255, 0.6);
+        transform: translateY(-3px);
+        outline: none;
+      }
+      .ai-magic-btn::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.3),
+          transparent 70%
+        );
+        animation: glow 2s infinite;
+        z-index: 0;
+      }
+      .ai-magic-btn:focus {
+        outline: none; 
+      }
+      .ai-magic-btn:hover::before {
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.4),
+          transparent 70%
+        );
+      }
+
+      .ai-magic-btn::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(255, 255, 255, 0.1);
+        mix-blend-mode: overlay;
+        animation: sparkle 1.5s infinite ease-in-out;
+        z-index: 0;
+      }
+
+      @keyframes glow {
+        0%,
+        100% {
+          transform: scale(1);
+          opacity: 0.5;
+        }
+        50% {
+          transform: scale(1.3);
+          opacity: 1;
+        }
+      }
+
+      @keyframes sparkle {
+        0% {
+          opacity: 0.4;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.8;
+          transform: scale(1.2);
+        }
+        100% {
+          opacity: 0.4;
+          transform: scale(1);
+        }
+      }
+
+      .ai-magic-btn i,
+      .ai-magic-btn span {
+        position: relative;
+        z-index: 1;
+      }
+      .editor-container {
+        margin: 50px auto;
+        max-width: 800px;
+        padding: 20px;
+        background-color: #1e1e2f;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      .textarea,
+      .textarea-result {
+        background-color: #292a33;
+        color: #ffffff;
+        border: 1px solid #3a3b45;
+      }
+      .textarea::placeholder,
+      .textarea-result::placeholder {
+        color: #a5a5a5;
+      }
+      .textarea:focus,
+      .textarea-result:focus {
+        border-color: #4caf50;
+        box-shadow: 0 0 4px rgba(76, 175, 80, 0.5);
+      }
+      .btn-container {
+        display: flex;
+        gap: 10px;
+        justify-content: flex-start;
+        margin-top: 20px;
+      }
+      .voice-dictation-btn {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: white;
+        background: linear-gradient(90deg, #ff512f, #dd2476);
+        border: none;
+        border-radius: 50px;
+        padding: 10px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        box-shadow: 0 4px 15px rgba(255, 94, 87, 0.4);
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .voice-dictation-btn:hover {
+        background: linear-gradient(90deg, #dd2476, #ff512f);
+        box-shadow: 0 6px 20px rgba(255, 94, 87, 0.6);
+        transform: translateY(-3px);
+      }
+
+      .voice-dictation-btn i {
+        font-size: 1.5rem;
+        animation: mic-pulse 2s infinite;
+      }
+
+      @keyframes mic-pulse {
+        0%,
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        50% {
+          transform: scale(1.2);
+          opacity: 0.7;
+        }
+      }
+
+      .voice-dictation-btn::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 94, 87, 0.3),
+          transparent 70%
+        );
+        animation: glow 2s infinite;
+        z-index: 0;
+      }
+
+      @keyframes glow {
+        0%,
+        100% {
+          transform: scale(1);
+          opacity: 0.5;
+        }
+        50% {
+          transform: scale(1.3);
+          opacity: 1;
+        }
+      }
+      .voice-dictation-btn i,
+      .voice-dictation-btn span {
+        position: relative;
+        z-index: 1;
+      }
+      body {
+        background-color: #121212;
+        color: #ffffff;
+        font-family: "Arial", sans-serif;
+      }
+      .navbar {
+        background-color: #1f1f1f;
+      }
+
+      .navbar-brand,
+      .nav-link {
+        color: #ffffff !important;
+      }
+      a:hover {
+        color: #4caf50;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="container editor-container">
+      <h1 class="text-center mb-4">Draft Editor</h1>
+      <textarea
+        id="draftText"
+        class="form-control textarea"
+        placeholder="Compose your grant proposal here..."
+      ></textarea>
+
+      <div class="btn-container">
+        <button id="analyzeButton" class="btn btn-primary">
+          Analyze Draft
+        </button>
+
+        <button id="suggestButton" class="btn ai-magic-btn">
+          <i class="fas fa-magic"></i> Get Suggestions
+        </button>
+
+        <button id="voiceButton" class="btn voice-dictation-btn">
+          <i class="fas fa-microphone"></i> Voice Dictation
+        </button>
+
+        <button id="clearButton" class="btn btn-danger">Clear</button>
+      </div>
+
+      <h3 class="mt-4">Generated Suggestions / Analysis</h3>
+      <textarea
+        id="generatedText"
+        class="form-control textarea-result"
+        placeholder="AI-generated content will appear here..."
+      >
+      </textarea>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      document.getElementById("analyzeButton").addEventListener("click", async () => {
+          const draft = document.getElementById("draftText").value;
+          if (!draft.trim()) {
+            alert("Please write something in the draft before analyzing.");
+            return;
+          }
+          alert("Analyzing the draft... (AI feature to be implemented)");
+          const response = await fetch("http://localhost:3000/analyse", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ text: draft }),
+          });
+          const result = await response.json();
+          document.getElementById("generatedText").value = result.res;
+        });
+
+      document.getElementById("suggestButton").addEventListener("click", async () => {
+          const draft = document.getElementById("draftText").value;
+          if (!draft.trim()) {
+            alert("Please write something in the draft to get suggestions.");
+            return;
+          }
+          alert("Fetching suggestions... (AI feature to be implemented)");
+          const response = await fetch("http://localhost:3000/suggest", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ text: draft }),
+          });
+          const result = await response.json();
+          document.getElementById("generatedText").value = result.res;
+        });
+
+      document.getElementById("clearButton").addEventListener("click", () => {
+        document.getElementById("draftText").value = "";
+      });
+
+      const voiceButton = document.getElementById("voiceButton");
+
+      voiceButton.addEventListener("click", () => {
+        if ("webkitSpeechRecognition" in window) {
+          const recognition = new webkitSpeechRecognition();
+          recognition.lang = "en-US";
+          recognition.interimResults = false;
+          recognition.onresult = (event) => {
+            const transcript = event.results[0][0].transcript;
+            document.getElementById("draftText").value = transcript;
+          };
+          recognition.start();
+        } else {
+          alert("Your browser does not support voice dictation.");
+        }
+      });
+    </script>
+  </body>
+</html>

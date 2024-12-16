@@ -1,0 +1,86 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+.header {
+    text-align: center;
+    padding: 2rem;
+    background: linear-gradient(to right, #4facfe, #00f2fe);
+    color: white;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.tips, .guides {
+    padding: 2rem;
+    text-align: center;
+}
+
+.tips h2, .guides h2 {
+    font-size: 2rem;
+    color: #4facfe;
+    margin-bottom: 1rem;
+}
+
+.tip-cards {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.tip-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    max-width: 300px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.tip-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.tip-card i {
+    font-size: 2rem;
+    color: #4facfe;
+    margin-bottom: 1rem;
+}
+
+.guides ul {
+    list-style: none;
+    padding: 0;
+}
+
+.guides ul li {
+    margin: 1rem 0;
+}
+
+.guides ul li a {
+    color: #00aaff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.guides ul li a:hover {
+    color: #005f99;
+}
+
+.footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #4facfe;
+    color: white;
+}
