@@ -1,3 +1,4 @@
+For Running the project please enter your Gemini API key in index.js
 # Task Documentation
 
 ## **Overview**
